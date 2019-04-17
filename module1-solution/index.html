@@ -1,35 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" ng-app="LunchCheck">
-  <head>
-    <title>Lunch Checker</title>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="./scripts/angular.min.js"></script>
-    <script src="./scripts/app.js"></script>
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <style>
-      .message { font-size: 1.3em; font-weight: bold; }
-    </style>
-  </head>
-<body ng-controller="LunchCheckController">
-   <div class="container">
-     <h1>Lunch Checker</h1>
+    <title>Lunch Checker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+</head>
 
-         <div class="form-group">
-             <input id="lunch-menu" type="text"
-             placeholder="list comma separated dishes you usually have for lunch"
-             class="form-control" ng-model="dishes">
-             <p>I did not consider an empty item, i.e., , , as an item towards the count</p>
-         </div>
-         <div class="form-group">
-             <button class="btn btn-default" ng-click="countDishes()" ng-style="(input === 'Enjoy!' ||  input === 'Too much!') && {'border-color': 'green'} ||
-                      input === 'Please enter data first' && {'border-color': 'red'}">Check If Too Much</button>
-         </div>
-         <div class="form-group message" ng-style="(input === 'Enjoy!' ||  input === 'Too much!') && {'color': 'green'} ||
-                  input === 'Please enter data first' && {'color': 'red'}">
-           <!-- Your message can go here. -->
-           {{ input }}
-         </div>
-   </div>
-
+<body >
+    <div class="container" ng-controller="LunchCheckController">
+        <h1>Lunch Checker</h1>
+        <div class="form-group">
+            <input id="lunch-menu" type="text" placeholder="list comma separated dishes you usually have for lunch" class="form-control" ng-model="dishes">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default" ng-click="checkLunch()">Check If Too Much</button>
+        </div>
+        <div ng-show="!empty && checked" class="alert alert-success">{{message}}</div>
+        <div ng-show="empty" class="alert alert-danger">Please enter data first</div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
